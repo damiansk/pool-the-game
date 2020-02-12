@@ -1,6 +1,6 @@
 import React from 'react';
 import { useThree } from 'react-three-fiber';
-import { Light, PoolTable, PoolBall } from '../components';
+import { PoolTable, PoolBall } from '../components';
 
 const ballStartPositions = [
   [0, -16, 0],
@@ -22,7 +22,7 @@ const ballStartPositions = [
 ];
 
 const Scene = () => {
-  const { camera } = useThree();
+  const { camera  } = useThree() as { camera: THREE.PerspectiveCamera };
 
   camera.fov = 45;
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -34,17 +34,17 @@ const Scene = () => {
 
   return (
     <>
-      <Light
+      <ambientLight
+        args={[0xffffff]}
         type="AmbientLight"
-        color={0xffffff}
         intensity={0.2}
         position={[0, 0, 0]}
       />
       {[[-5, -12, 20], [5, -12, 20], [-5, 12, 20], [5, 12, 20]].map((pos, index) => (
-        <Light
+        <pointLight
+          args={[0xffffff]}
           key={index}
           type='PointLight'
-          color={0xffffff}
           intensity={0.4}
           distance={100}
           position={pos}

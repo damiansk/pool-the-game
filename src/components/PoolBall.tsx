@@ -3,7 +3,7 @@ import { TextureLoader, SphereGeometry } from 'three';
 
 const geometry = new SphereGeometry(0.5, 128, 128);
 
-const PoolBall = ({ textureURL, ...restProps }) => {
+const PoolBall: React.FC<{ textureURL: string | number, position: THREE.Vector3 | number[] }> = ({ textureURL, ...restProps }) => {
   const texture = useMemo(() =>
     new TextureLoader().load(`./assets/balls/${textureURL}.png`), [textureURL]);
   return (
