@@ -12,7 +12,9 @@ const Provider: React.FC<{}> = ({ children }) => {
     // TODO Check what it is doing
     world.broadphase = new CANNON.NaiveBroadphase();
     world.solver.iterations = 10;
-    world.gravity.set(0, -10, 0);
+    world.gravity.set(0, 0, -10);
+    world.defaultContactMaterial.contactEquationStiffness = 1e11; // Contact stiffness - use to make softer/harder contacts
+    world.defaultContactMaterial.contactEquationRelaxation = 2; // Stabilization time in number of timesteps
   }, [world]);
 
   useFrame(() => world.step(1/60));

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useThree } from 'react-three-fiber';
 import { PoolTable, PoolBall } from '../components';
+import { Provider } from '../hooks';
 
 const ballStartPositions = [
   [0, -16, 0],
@@ -51,10 +52,12 @@ const Scene = () => {
           castShadow
         />
       ))}
-      <PoolTable />
 
-      {ballStartPositions.map((position, index) =>
-        <PoolBall key={index} position={position} textureURL={index} />)}
+      <Provider>
+        <PoolTable />
+        {ballStartPositions.map((position, index) =>
+          <PoolBall key={index} position={position} textureURL={index} />)}
+      </Provider>
     </>
   );
 }

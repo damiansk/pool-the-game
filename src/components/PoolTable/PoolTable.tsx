@@ -40,7 +40,7 @@ const PoolTable: React.FC<{}> =
 
 
     return (
-      <object3D position={[0, 0, -1]}>
+      <object3D position={[0, 0, -0.5]}>
         <Top texture={texture}/>
 
         {edgeSidePositions.map((pos, i) => 
