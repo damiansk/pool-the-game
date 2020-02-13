@@ -26,9 +26,9 @@ const useCannon = (
   props: CANNON.IBodyOptions,
   fn: (body: CANNON.Body) => void,
   deps: Array<any> = []
-): React.Ref<THREE.Object3D> => {
-  // TODO Use generic type
-  const ref = useRef<THREE.Object3D>(null);
+): React.MutableRefObject<THREE.Mesh> => {
+  // TODO Use generic type?
+  const ref = useRef<THREE.Mesh>(null!);
   const world = useContext(cannonContext);
 
   const [body] = useState(() => new CANNON.Body(props));

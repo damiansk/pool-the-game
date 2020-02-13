@@ -2,7 +2,9 @@ import React, { useMemo } from 'react';
 import {
   TextureLoader,
   RepeatWrapping,
-  Object3D
+  Object3D,
+  Quaternion,
+  Euler
 } from 'three';
 import { ReactThreeFiber } from 'react-three-fiber';
 import playAreaTextureURL from '../../assets/cloth.jpg';
@@ -56,14 +58,16 @@ const PoolTable: React.FC<{}> =
             key={i}
             texture={texture}
             position={pos}
-            rotation-y={i === 1 || i === 3 ? Math.PI : undefined}
+            quaternion={new Quaternion()
+              .setFromEuler(new Euler(0, i === 1 || i === 3 ? Math.PI : undefined, 0))}
           />)}
         {clothTopPositions.map((pos, i) =>
           <Cloth
             key={i}
             texture={texture}
             position={pos}
-            rotation-z={i === 0 ? -Math.PI/2 : Math.PI/2}
+            quaternion={new Quaternion()
+              .setFromEuler(new Euler(0, 0, i === 0 ? -Math.PI/2 : Math.PI/2))}
           />)}
       </object3D>
     );

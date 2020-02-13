@@ -31,7 +31,7 @@ const Scene = () => {
   camera.far = 1000;
 
   camera.up.set(0, 0, 1);
-  camera.position.set(-5, 7, 5);
+  camera.position.set(-25, 17, 25);
 
   return (
     <>
