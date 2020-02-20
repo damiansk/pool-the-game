@@ -2,6 +2,7 @@ import React from 'react';
 import { useThree } from 'react-three-fiber';
 import { PoolTable, PoolBall } from '../components';
 import { Provider } from '../hooks';
+import { Light } from '../components/Light';
 
 const ballStartPositions = [
   [0, -16, 0],
@@ -35,14 +36,14 @@ const Scene = () => {
 
   return (
     <>
-      <ambientLight
+      <Light
         args={[0xffffff]}
         type="AmbientLight"
         intensity={0.2}
         position={[0, 0, 0]}
       />
       {[[-5, -12, 20], [5, -12, 20], [-5, 12, 20], [5, 12, 20]].map((pos, index) => (
-        <pointLight
+        <Light
           args={[0xffffff]}
           key={index}
           type='PointLight'

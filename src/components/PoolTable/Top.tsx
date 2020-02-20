@@ -3,14 +3,19 @@ import { BoxGeometry, Vector3 } from 'three';
 import * as CANNON from 'cannon';
 import { useCannon } from '../../hooks';
 
+const mass = 0;
+
 const geometry = new BoxGeometry(24, 48, 1);
 const position = new Vector3(0, 0, 0);
 
 const Top: React.FC<{ texture: THREE.Texture }> =
   ({ texture }) => {
-    const ref = useCannon({ mass: 0, material: new CANNON.Material('Plane') }, body => {
-      body.addShape(new CANNON.Plane());
+    const ref = useCannon({ mass: mass }, (body, materials) => {
+      const shape = new CANNON.Plane();
+      body.addShape(shape);
       body.position.set(position.x, position.y, position.z);
+
+      body.material = materials.top;
     });
 
     return (

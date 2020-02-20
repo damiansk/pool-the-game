@@ -25,10 +25,12 @@ const cannonShape = new CANNON.ConvexPolyhedron(
 
 const Cloth: React.FC<{ texture: THREE.Texture, position: number[], quaternion: THREE.Quaternion }> =
   ({ texture, position, quaternion, ...restProps }) => {
-    const ref = useCannon({ mass: 0 }, body => {
+    const ref = useCannon({ mass: 0 }, (body, materials) => {
       body.addShape(cannonShape);
       body.position.set(position[0], position[1], position[2]);
       body.quaternion.set(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
+
+      body.material = materials.side;
     });
 
     return (
